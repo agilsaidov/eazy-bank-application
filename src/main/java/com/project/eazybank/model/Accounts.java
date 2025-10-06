@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @Getter @Setter
-public class Account {
+public class Accounts {
 
     @Column(name = "customer_id")
     private long customerId;
