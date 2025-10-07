@@ -26,10 +26,10 @@ public class Notices {
     private String noticeDetails;
 
     @Column(name = "notic_beg_dt")
-    private Date noticeBegDt;
+    private Date noticBegDt;
 
     @Column(name = "notic_end_dt")
-    private Date noticeEndDt;
+    private Date noticEndDt;
 
     @JsonIgnore
     @Column(name = "create_dt")
