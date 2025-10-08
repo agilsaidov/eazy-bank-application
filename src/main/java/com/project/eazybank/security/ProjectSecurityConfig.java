@@ -1,5 +1,6 @@
 package com.project.eazybank.security;
 
+import com.project.eazybank.exceptionhandling.CustomBasicAuthenticationEntryPoint;
 import com.project.eazybank.filter.CsrfCookieFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
@@ -49,7 +50,7 @@ public class ProjectSecurityConfig {
                         .requestMatchers("/notices","/contact","/error","/register","/invalidSession").permitAll());
 
         http.formLogin(withDefaults());
-        http.httpBasic(withDefaults());
+        http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
         http.exceptionHandling(withDefaults());
         return http.build();
     }
