@@ -1,5 +1,6 @@
 package com.project.eazybank.security;
 
+import com.project.eazybank.exceptionhandling.CustomAccessDeniedHandler;
 import com.project.eazybank.exceptionhandling.CustomBasicAuthenticationEntryPoint;
 import com.project.eazybank.filter.CsrfCookieFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -51,7 +52,7 @@ public class ProjectSecurityConfig {
 
         http.formLogin(withDefaults());
         http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
-        http.exceptionHandling(withDefaults());
+        http.exceptionHandling(ehc -> ehc.accessDeniedHandler(new CustomAccessDeniedHandler()));
         return http.build();
     }
 
