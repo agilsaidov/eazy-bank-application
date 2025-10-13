@@ -3,6 +3,8 @@ package com.project.eazybank.security;
 import com.project.eazybank.exceptionhandling.CustomAccessDeniedHandler;
 import com.project.eazybank.exceptionhandling.CustomBasicAuthenticationEntryPoint;
 import com.project.eazybank.filter.CsrfCookieFilter;
+import com.project.eazybank.filter.JwtTokenGeneratorFilter;
+import com.project.eazybank.filter.JwtTokenValidatorFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,6 +48,8 @@ public class ProjectSecurityConfig {
                         .ignoringRequestMatchers("/contact","/register")
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new JwtTokenGeneratorFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(new JwtTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .requiresChannel(rcc -> rcc.anyRequest().requiresInsecure())
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/myAccount").hasRole("USER")
