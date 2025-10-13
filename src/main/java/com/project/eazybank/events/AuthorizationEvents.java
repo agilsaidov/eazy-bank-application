@@ -1,7 +1,6 @@
 package com.project.eazybank.events;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.authorization.event.AuthorizationDeniedEvent;
 import org.springframework.stereotype.Component;
